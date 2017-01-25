@@ -1,0 +1,64 @@
+<div class="container" ng-controller="AppCtrl">
+	<h1>
+		Books
+	</h1>
+	<div class="row">
+		<div class="col-sm-6">
+			<form class="form-inline">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search Book" ng-model="searchBook">
+					<select class="form-control" ng-model="searchType">
+				<option value="title">Title</option>
+				<option value="author">Author</option>
+				<option value="genre">Genre</option>
+			</select>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-6">
+			<a class="btn btn-primary pull-right" ng-href="#/books/add">Add New Book</a>
+		</div>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+            Title
+            <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+				</th>
+				<th>
+					<a href="#" ng-click="sortType = 'price'; sortReverse = !sortReverse">
+            Price
+            <span ng-show="sortType == 'price' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'price' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+				</th>
+				<th>
+					<a href="#" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+            Release Date
+            <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+				</th>
+				<th>Genre</th>
+				<th>Author</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in books | orderBy:sortType:sortReverse | myTableFilter:searchBook:searchType">
+				<td>{{item.title}}</td>
+				<td>{{item.price}}</td>
+				<td>{{item.releasedate}}</td>
+				<td>{{item.genre}}</td>
+				<td>{{item.author}}</td>
+				<td><button class="btn btn-danger" ng-click="remove(item._id)">Remove</button> &nbsp;&nbsp;
+					<button class="btn btn-warning" ng-click="edit(item._id)">Edit Book</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

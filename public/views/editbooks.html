@@ -1,0 +1,30 @@
+<div class="container" ng-controller="AppCtrl">
+	<form class="col-sm-6 col-sm-offset-3">
+		<h2 class="text-center">{{formName}}</h2>
+		<div class="form-group">
+			<label>Book Title</label>
+			<input class="form-control" ng-model="book.title">
+		</div>
+		<div class="form-group">
+			<label>Book Author</label>
+			<input class="form-control" ng-model="book.author">
+		</div>
+		<div class="form-group">
+			<label>Genre</label>
+			<input class="form-control" ng-model="book.genre">
+		</div>
+		<div class="form-group">
+			<label>Price</label>
+			<input type="number" class="form-control" ng-model="book.price">
+		</div>
+		<div class="form-group">
+			<label>Release Date</label>
+			<input class="form-control datepicker" ng-model="book.releasedate"  data-date-format="mm/dd/yyyy">
+		</div>		
+		<div class="form-group text-right">
+			<a class="btn btn-danger" ng-href="#/books">Cancel</a>
+			<button ng-show="!editForm" class="btn btn-primary" ng-click="addBook()">Submit</button>
+			<button ng-show="editForm" class="btn btn-info" ng-click="updateBook()">Update</button>
+		</div>
+	</form>
+</div>
